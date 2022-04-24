@@ -1,16 +1,25 @@
-.winnerBoxContainer{
+.winnerBoxContainer {
     position: absolute;
     top: 0;
     left: 0;
-    height:34vw;
+    height: 34vw;
     width: 34vw;
     border-radius: 1vw;
-    background-color:rgba(255, 255, 255, 0.729);
+    background-color: rgba(255, 255, 255, 0.83);
     display: flex;
-    justify-content:center;
-    align-items:center;
+    justify-content: center;
+    align-items: center;
 }
-.winnerName{
+
+.winnerName {
     color: rgb(7, 7, 7);
     font-weight: bold;
+}
+
+@media (max-width: 480px) {
+    .winnerBoxContainer {
+        height: 95vw;
+        width: 95vw;
+        font-size: 7vw;
+    }
 }

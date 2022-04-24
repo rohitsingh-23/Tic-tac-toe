@@ -18,64 +18,64 @@ const winningCondition = [
 function Home() {
   const [board, setBoard] = useState(new Array(9).fill(null));
   const [currentPlayer, setCurrentPlayer] = useState(true);
-    const [winner, setWinner] = useState(null);
-    // const [move] = useState("../../public//click.wav")
+  const [winner, setWinner] = useState(null);
+  // const [move] = useState("../../public//click.wav")
 
-    useEffect(() => {
-        const audio = new Audio();
-        audio.src = "../../public/click.wav"
-        console.log(audio)
-        audio.play();
-    }, [])
+  useEffect(() => {
+    const audio = new Audio();
+    audio.src = "../../public/click.wav";
+    // console.log(audio);
+    audio.play();
+  }, []);
 
   function handelMove(index) {
     const updatedBoard = [...board];
-      if (board[index] == null && winner == null) {
+    let flag = false;
+    if (board[index] == null && winner == null) {
       updatedBoard[index] = currentPlayer ? "X" : "O";
       setBoard(updatedBoard);
       setCurrentPlayer(!currentPlayer);
-      // handelWinner()
       for (let i = 0; i < 8; i++) {
         let [x, y, z] = winningCondition[i];
         let temp = updatedBoard[x] + updatedBoard[y] + updatedBoard[z];
         if (temp == "XXX") {
+          flag = true;
           return setWinner("X");
         } else if (temp == "OOO") {
+          flag = true;
           return setWinner("O");
         }
       }
     } else if (winner !== null) {
-        alert("Reset the board")
+      alert("Reset the board");
     }
-  }
-
-  function handelWinner() {
-    for (let i = 0; i < 8; i++) {
-      let [x, y, z] = winningCondition[i];
-      let temp = board[x] + board[y] + board[z];
-      console.log("temp", temp, x, y, z);
-      // if (temp == "XXX") {
-      //     return console.log("X")
-      // } else if (temp == "OOO") {
-      //     return console.log("O")
-      // }
+    if (flag == false) {
+      let count = 0;
+      for (let i = 0; i < 9; i++) {
+        if (board[i] !== null) {
+          count++;
+        }
+      }
+      if (count == 8) {
+        setWinner("Draw");
+      }
     }
   }
   function handelReset() {
-      setBoard(new Array(9).fill(null));
-      setWinner(null)
-      setCurrentPlayer(true)
+    setBoard(new Array(9).fill(null));
+    setWinner(null);
+    setCurrentPlayer(true);
   }
 
   return (
     <div className="container">
-          <p className="title">Welcome User</p>
-          <MoveIndicator currentPlayer={currentPlayer}/>
+      <p className="title">Welcome User</p>
+      <MoveIndicator currentPlayer={currentPlayer} />
       <div className="board">
         {board.map((e, i) => {
           return <Box val={e} index={i} handelMove={handelMove} />;
         })}
-              <div>{winner !== null ? <Winnerbox winner={winner}/> : null}</div>
+        <div>{winner !== null ? <Winnerbox winner={winner} /> : null}</div>
       </div>
       <div>
         <button onClick={handelReset} className="reset_board">

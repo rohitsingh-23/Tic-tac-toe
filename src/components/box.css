@@ -1,10 +1,18 @@
-.box{
-    height:10vw; 
-    width:10vw;
+.box {
+    height: 10vw;
+    width: 10vw;
     background-color: #00bfff;
     border: none;
     font-size: 7vw;
     font-weight: bold;
     border-radius: 1vw;
     /* border: 1px solid green; */
+}
+
+@media (max-width: 480px) {
+    .box {
+        height: 30vw;
+        width: 30vw;
+        font-size: 18vw;
+    }
 }
