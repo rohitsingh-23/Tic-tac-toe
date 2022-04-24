@@ -1,0 +1,16 @@
+.winnerBoxContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height:34vw;
+    width: 34vw;
+    border-radius: 1vw;
+    background-color:rgba(255, 255, 255, 0.729);
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+.winnerName{
+    color: rgb(7, 7, 7);
+    font-weight: bold;
+}
